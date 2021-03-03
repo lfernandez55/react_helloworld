@@ -15,8 +15,9 @@ function App() {
           target="_blank"
           rel="noopener noreferrer"
         >
-          Learn React
+          Learn React 
         </a>
+        <h3>Environement Variable: {process.env.REACT_APP_SERVER_URL}</h3>
       </header>
     </div>
   );

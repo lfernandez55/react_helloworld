@@ -3,6 +3,7 @@ const bodyParser = require('body-parser')
 const path = require('path');
 const app = express();
 
+// to use the following two lines install cors
 // var cors = require('cors')
 // app.use(cors())
 

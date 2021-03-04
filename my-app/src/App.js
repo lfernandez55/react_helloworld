@@ -3,6 +3,27 @@ import Main from './components/Main.js'
 import { BrowserRouter as Router, Link, Route } from 'react-router-dom'
 
 function App() {
+
+  const testAPI = (param) => {
+    alert(param)
+    fetch('api/test', {
+      //fetch('http://localhost:8080/api/test', {
+      method: "GET",
+    })
+      .then((response) => {
+        return response.json();
+      })
+      .then((resp) => {
+        console.log('something is returned....');
+        console.log(resp)
+      })
+      .catch((err) => {
+        // Code called when an error occurs during the request
+        console.log(err.message);
+      });
+  }
+
+
   return (
     <Router>
       <div className="App">
@@ -12,8 +33,9 @@ function App() {
             <li><Link to="/list">List</Link></li>
             <li><Link to="/about">About</Link></li>
          </ul>
+             <button className="Sort-button" onClick={ () => testAPI("Foo") }  >Test API</button>
           <Route path="/list">
-            <button className="Sort-button">Sort List</button>
+            <button className="Sort-button"   >Sort List</button>
           </Route>
         </header>
         <Main />

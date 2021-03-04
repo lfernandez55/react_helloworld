@@ -68,3 +68,58 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/d
 ### `npm run build` fails to minify
 
 This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+
+--------------------------------
+
+BUILD LOG
+A lot of this build process is from: https://dev.to/loujaybee/using-create-react-app-with-express
+
+1) Create an empty github repo  react_helloworld
+
+2) Following directions at https://reactjs.org/docs/create-a-new-react-app.html:
+    >npx create-react-app my-app
+    >cd my-app
+    >npm start
+    In browser go to localhost:3000
+
+3) Create an environment variable
+    a) Create an .env file inside of which is:
+    REACT_APP_SERVER_URL=http://localhost:8080
+    b) Modify App.js by adding {process.env.REACT_APP_SERVER_URL}
+    c) >npm start
+    d) In browser go to localhost:3000 and see the enviroment var in the main page
+
+4) Added src/component/Main.js
+   Modified App.css
+
+5) Added Some Simple Routing
+   a) >npm install react-router-dom
+
+6) Installed express
+  a) >npm install express --save (look at package.json)
+  b) add server.js file 
+  c) >node server.js  (while no index page loads, you can test the ping route)
+  d) In a browser notice what is returned from 8080/ping
+
+7) Create a build folder of the front end
+  a) > npm run build (note how a build folder is created)
+  b) Restart node with
+     >node server.js
+  c)Note how the front end index page is now served up on 8080
+
+8) Install nodemon
+    a) npm install nodemon --save
+    b)  Add the following to package.json:
+        (see: https://stackoverflow.com/questions/40359590/nodemon-command-is-not-recognized-in-terminal-for-node-js-server )
+        "scripts": {
+            "serve": "nodemon server.js"
+        },
+    c) Test the server by running
+        >npm run serve
+    d) In server.js change pong to PONG and w/o stopping server observe
+       change by requesting 8080/ping (returns "PONG")
+
+9) Open up two terminals
+    a) In the left terminal >npm start
+
+10) 

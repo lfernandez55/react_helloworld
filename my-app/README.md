@@ -145,3 +145,62 @@ server running on 8080
         let reqURL = {process.env.REACT_APP_SERVER_URL} + 'api/test'
         fetch(reqURL, {
 
+
+
+
+12) Install Mongo and create a db and a collection
+a)Use the shell to create a db called "projectsdb"
+b)Create a collection called "projects" (plural)
+c)Insert some records into the collection  (here's one):
+ db.projects.insertOne(   
+    {
+      "id": 70,
+      "title": "Amet consectetur adipisicing elit",
+      "description": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Corrupti ipsa error maxime alias id quisquam, quos commodi! Ex minus, molestias explicabo exercitationem ea voluptatum, itaque ipsum quos doloribus id quae?",
+      "creator": "Mark Smith",
+      "type": "static",
+      "status": "in-progress",
+      "progress": 85,
+      "beginDate": new Date("2009-05-07"),
+      "finishDate": new Date("2010-05-07"),
+      "added_at": new Date("1990-05-07"),
+      "updated_at": new Date("2020-05-07"),
+      "create_by": ""
+    }
+     )
+
+13) Install Mongoose
+>npm install mongoose
+
+14) Allow node.js to run ES6 syntax like import(we are going to
+use import and export in node.js so we need to use babel to do the
+translation)
+a)npm install @babel/node --save
+b)create .babelrc file
+c)in package.json modify 
+    "serve": "nodemon server.js"
+    to:
+    "server": "nodemon server.js --exec babel-node"
+d) so now when you do > npm run server it will run the bable translator too
+   allowing ES6 syntax like import to work.
+
+15) Modify server.js
+a)import Mongoose 
+b)import connect.js
+c)connect to db
+d)import routes
+e)Create these folders files:
+/src/server/config/db/connect.js
+/src/server/config/routes.js
+/src/server/controllers/projects.js
+/src/server/models/project.js
+f)All of the above create a new api route called http://localhost:8080/api/projects
+
+16) Test API call
+a)Spin up server again.  Since in step 13 I modified package.json the new command is:
+>npm run server
+b) Request http://localhost:8080/api/projects
+c) The browser will return some json
+
+17) Now modify frontend to call the api and display it
+

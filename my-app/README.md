@@ -121,5 +121,27 @@ A lot of this build process is from: https://dev.to/loujaybee/using-create-react
 
 9) Open up two terminals
     a) In the left terminal >npm start
+    b) In the right >npm run serve
 
-10) 
+10) Test API call
+    a)Add button and API call to 'api/test' in App.js
+    b) In localhost:3000 try button
+    c) In Dev Tools Network tab notice that request goes to :3000
+    and returns wrong info
+    d) add "proxy": "http://localhost:8080", to package.json
+    e) >npm start
+    f) Try Test API button again in GUI at localhost:3000
+    g) Notice that while api request still goes to :3000, the response
+    {"sender":"Joe","writing":"Roses are red...."} is returned from server
+
+11) Now I can develop front end on 3000 while still making API calls to
+server running on 8080
+    Note that there's an alternative way to do this:
+    a)>npm install CORS
+    b)In server.js uncomment CORS lines
+    c)In App.js change fetch so that instead of:
+        fetch('api/test', {
+            have:
+        let reqURL = {process.env.REACT_APP_SERVER_URL} + 'api/test'
+        fetch(reqURL, {
+

@@ -20,7 +20,10 @@ export default function Main(props) {
                 </Route>
                 <Route path="/">
                     <h4>Default Home Content</h4>
-                    llll: {props.projname}
+                    llll: 
+                    {props.projs.map( (e,i) => {
+                        return (<p key={i}>  {e.title}  </p>)
+                    })}
                 </Route>
             </Switch>
         </div>

@@ -8,9 +8,11 @@ export const ProjectContext = createContext()
 
 function App() {
 
-const [projects, setProjects] = useState({});
+let myArray =  [{"title": "Whale"},{"title": "Fish"}] 
+
+const [projects, setProjects] = useState(myArray);
 useEffect(() => {  
-    fetch('api/test', {
+    fetch('api/projects', {
       method: "GET",
     })
       .then((response) => {
@@ -27,6 +29,12 @@ useEffect(() => {
       });
 },[])
 
+function renderProj(projects){
+  let myArray = projects.map( (e,i) => {
+    return (<p key={i}  >  {e.title}  </p>)
+    })
+  return (myArray)
+}
 
   return (
     <ProjectContext.Provider value={{projects, setProjects}}>
@@ -50,8 +58,12 @@ useEffect(() => {
           </ul>
 
         </header>
-        Test api: <h1>{projects.name}</h1>
-        <Main projname={projects.name} />
+        { renderProj( projects ) } 
+        
+        {projects.map( (e,i) => {
+          return (<p key={i}  >  {e.title}  </p>)
+          })}
+        <Main projs={projects} />
         <footer className="App-footer">
           <p>Copyright 2021</p> 
           <p>Environment Variable (set in root/.env): {process.env.REACT_APP_SERVER_URL}</p> 

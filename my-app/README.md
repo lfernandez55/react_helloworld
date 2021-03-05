@@ -235,7 +235,7 @@ a proxy error unless I did so
 f) now go to localhost:3000 and observe that server data is
 rendered but the fetch isn't called over and over again
 
-
+21) Passing project name down to main component in a prop
 
 Now modify frontend to call the api and display it
 

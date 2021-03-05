@@ -51,7 +51,7 @@ useEffect(() => {
 
         </header>
         Test api: <h1>{projects.name}</h1>
-        <Main />
+        <Main projname={projects.name} />
         <footer className="App-footer">
           <p>Copyright 2021</p> 
           <p>Environment Variable (set in root/.env): {process.env.REACT_APP_SERVER_URL}</p> 

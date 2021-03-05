@@ -209,7 +209,12 @@ array
 
 Commit name: Testing api/projects
 
-18) 
+18) Refactoring
+a) Reverted api/projects to api/test
+b) Moved folder src/server to root/server
+c) Edited paths in server.js
+
+19) Add state and render testAPI in GUI
 
 
 Now modify frontend to call the api and display it

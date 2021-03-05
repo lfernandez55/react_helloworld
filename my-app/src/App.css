@@ -6,6 +6,8 @@
   background-color: lightgray;
   min-height: 10vh;
   text-align: left;
+  display: flex;
+  justify-content: space-between;
 }
 
 .App-footer {

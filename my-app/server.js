@@ -19,10 +19,10 @@ app.get('/ping', function (req, res) {
 
 
 app.get('/api/test', function (req, res) {
-    let msg = {};
-    msg.sender="Joe";
-    msg.writing="Roses are red....";
-    return res.send(JSON.stringify(msg));
+    let proj = {};
+    proj.name="My Big Project";
+    proj.description="A tough tedious project";
+    return res.send(JSON.stringify(proj));
 });
 
 // Routing

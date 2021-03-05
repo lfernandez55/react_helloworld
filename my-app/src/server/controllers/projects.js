@@ -2,7 +2,7 @@ import { Project } from '../models/project'
 // import { Movie as Project } from '../models/movie'
 
 export const allProjectsAPI = (req, res, next) => {
-    Project.findOne().exec((err, projects)=> {
+    Project.find().exec((err, projects)=> {
         if(err){
             res.json({success: false, message: "Query failed"})
             res.end()

@@ -202,5 +202,15 @@ a)Spin up server again.  Since in step 13 I modified package.json the new comman
 b) Request http://localhost:8080/api/projects
 c) The browser will return some json
 
-17) Now modify frontend to call the api and display it
+17) Test it temporarily by changing test API call to
+api/projects
+a) in projects.js change findOne to find to return an
+array
+
+
+
+18)
+
+
+Now modify frontend to call the api and display it
 

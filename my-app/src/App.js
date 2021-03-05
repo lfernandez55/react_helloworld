@@ -6,7 +6,7 @@ function App() {
 
   const testAPI = (param) => {
     alert(param)
-    fetch('api/projects', {
+    fetch('api/test', {
       //fetch('http://localhost:8080/api/test', {
       method: "GET",
     })

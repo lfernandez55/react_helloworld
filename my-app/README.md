@@ -207,9 +207,9 @@ api/projects
 a) in projects.js change findOne to find to return an
 array
 
+Commit name: Testing api/projects
 
-
-18)
+18) 
 
 
 Now modify frontend to call the api and display it

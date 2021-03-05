@@ -4,10 +4,8 @@ const path = require('path');
 const app = express();
 
 //connect to the db
-import {connect} from './src/server/config/db/connect'
-//const connect = require('./src/server/config/db/connect')
-// connect("mongodb://localhost:27017/topmovies")
- connect("mongodb://localhost:27017/projectsdb")
+import {connect} from './server/config/db/connect'
+connect("mongodb://localhost:27017/projectsdb")
 
 // to use the following two lines install cors
 // var cors = require('cors')
@@ -28,8 +26,7 @@ app.get('/api/test', function (req, res) {
 });
 
 // Routing
-import {configureRoutes} from './src/server/config/routes'
-// const configureRoutes = require('./src/server/config/routes')
+import {configureRoutes} from './server/config/routes'
 configureRoutes(app)
 
 

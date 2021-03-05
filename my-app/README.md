@@ -215,6 +215,26 @@ b) Moved folder src/server to root/server
 c) Edited paths in server.js
 
 19) Add state and render testAPI in GUI
+a)imported useState and createContext to App.js and
+added associated code to display projects
+b)Changed objects sent back from server from testAPI
+c)Test the changes by clicking on testAPI.  Notice
+that the data is displayed in the GUI
+
+Display testAPI data in Gui using useState
+
+20) Demo useEffect.  
+a) take out testapi button
+b) just allow fetch to load when component loads
+c) Notice that the fetch works and the data is displayed.
+But the fetch is called over and over again.  To stop that loop
+wrap the fetch in the useeffect code.
+d) See also: https://stackoverflow.com/questions/62050966/how-to-fetch-data-without-useeffect-hooks-in-react-function-component
+e) restart the client side code (npm start) becuz i noticed
+a proxy error unless I did so
+f) now go to localhost:3000 and observe that server data is
+rendered but the fetch isn't called over and over again
+
 
 
 Now modify frontend to call the api and display it

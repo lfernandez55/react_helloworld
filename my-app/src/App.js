@@ -1,7 +1,7 @@
 import './App.css';
 import Main from './components/Main.js'
 import { BrowserRouter as Router, Link, Route } from 'react-router-dom'
-import {useState, createContext} from 'react'
+import {useState, createContext, useEffect } from 'react'
 
 export const ProjectContext = createContext()
 
@@ -9,9 +9,7 @@ export const ProjectContext = createContext()
 function App() {
 
 const [projects, setProjects] = useState({});
-
-  const testAPI = (param) => {
-    alert(param)
+useEffect(() => {  
     fetch('api/test', {
       method: "GET",
     })
@@ -27,7 +25,7 @@ const [projects, setProjects] = useState({});
         // Code called when an error occurs during the request
         console.log(err.message);
       });
-  }
+},[])
 
 
   return (
@@ -41,9 +39,9 @@ const [projects, setProjects] = useState({});
             <li><Link to="/about">About</Link></li>
           </ul>
           <ul>
-            <li>
+            {/* <li>
               <button className="Sort-button" onClick={() => testAPI("Foo")}  >Test API</button>
-            </li>
+            </li> */}
             <li>
               <Route path="/list">
                 <button className="Sort-button"   >Sort List</button>

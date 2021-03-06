@@ -235,7 +235,7 @@ a proxy error unless I did so
 f) now go to localhost:3000 and observe that server data is
 rendered but the fetch isn't called over and over again
 
-21) Render project in app.js two ways and also pass it down
+21) Render projects in app.js two ways and also pass it down
 to main.js
 a) Render using map in app.js
 b) Render using call to function in app.js

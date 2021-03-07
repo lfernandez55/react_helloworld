@@ -250,3 +250,7 @@ b) Add controller
 c) Add test fetch in client to test it
 d) test the call (notice that when u refresh 3000 one less proj shows up 
 in list)
+
+24) Added other CRUD methods that update backend.  But they are crude:
+They don't update the front end.
+POST and PUT info isn't sent yet to server 

@@ -9,7 +9,7 @@ export const ProjectContext = createContext()
 
 function App() {
 
-  let myArray = [{ "title": "Whale" }, { "title": "Fish" }]
+  let myArray = [{ "title": "Whale (these obj load when server is down) " }, { "title": "Fish" }]
 
   const [projects, setProjects] = useState(myArray);
   useEffect(() => {

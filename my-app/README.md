@@ -242,3 +242,11 @@ b) Render using call to function in app.js
 c) Render in main.js
 
 22) Added client side delete using useContext and filter
+a) Show how it works.  But how it doesn't persist when client is refreshed.
+
+23) Add delete api on backend.  Test it client side
+a) Add route server side in server/config/routes.js
+b) Add controller
+c) Add test fetch in client to test it
+d) test the call (notice that when u refresh 3000 one less proj shows up 
+in list)

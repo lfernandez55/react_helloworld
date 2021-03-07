@@ -30,12 +30,6 @@ function App() {
       });
   }, [])
 
-  function renderProj(projects) {
-    let myArray = projects.map((e, i) => {
-      return (<p key={i}  >  {e.title}  </p>)
-    })
-    return (myArray)
-  }
 
   return (
     <ProjectContext.Provider value={{ projects, setProjects }}>

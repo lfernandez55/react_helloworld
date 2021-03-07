@@ -18,3 +18,19 @@ export const allProjectsAPI = (req, res, next) => {
         }
     })
 }
+
+export const delProjectAPI = (req, res, next) => {
+    console.log("DEBUG DELETE PROJECT", req.params.id)
+    Project.deleteOne({_id: req.params.id }).exec((err, projects)=> {
+        if(err){
+            res.json({success: false, message: "Delete Query failed"})
+            res.end()
+        }else{
+            let debugObj = {'msg': "Proj Deleted"}
+            res.send(JSON.stringify(debugObj))
+        }
+    })
+
+    // let debugObj = {'msg': "Proj Deleted"}
+    // res.send(JSON.stringify(debugObj))
+}

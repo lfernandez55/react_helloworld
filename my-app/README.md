@@ -241,3 +241,4 @@ a) Render using map in app.js
 b) Render using call to function in app.js
 c) Render in main.js
 
+22) Added client side delete using useContext and filter

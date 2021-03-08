@@ -1,6 +1,7 @@
 import './App.css';
 import Main from './components/Main.js'
 import ProjectList from './components/ProjectList.js'
+import ProjectForm from './components/ProjectForm.js'
 import { BrowserRouter as Router, Link, Route, Switch } from 'react-router-dom'
 import { useState, createContext, useEffect } from 'react'
 
@@ -34,13 +35,18 @@ function App() {
   return (
     <ProjectContext.Provider value={{ projects, setProjects }}>
       <Router>
+
         <div className="App">
+         <header >
+           <h2>Mongo, Express, React CRUD App</h2>
+         </header>
           <header className="App-header">
             <ul>
               <li><Link to="/">Home</Link></li>
               <li><Link to="/list"> Project List</Link></li>
               <li><Link to="/about">About</Link></li>
             </ul>
+            
             <ul>
               {/* <li>
               <button className="Sort-button" onClick={() => testAPI("Foo")}  >Test API</button>
@@ -56,6 +62,13 @@ function App() {
           <Switch>
             <Route path="/list">
               <ProjectList projs={projects} />
+            </Route>
+
+            <Route path="/project/:pid">
+              <ProjectForm />
+            </Route>
+            <Route path="/project">
+              <ProjectForm />
             </Route>
             <Route path="/about">
               <h4>Build an about component here</h4>

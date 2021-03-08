@@ -27,9 +27,8 @@ export const delProjectAPI = (req, res, next) => {
             res.json({success: false, message: "Delete Query failed"})
             res.end()
         }else{
-            let msgStr = "Project with id " + req.params.id + " deleted"
-            let debugObj = {msg : msgStr}
-            res.send(JSON.stringify(debugObj))
+            res.json({success: true, message: "Delete Query succeeded"})
+            res.end()
         }
     })
 
@@ -40,11 +39,15 @@ export const addProjectAPI = (req, res, next) => {
 
     let randomNumber = Math.floor(Math.random() * 1000);
 
+    console.log("XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX")
+    console.log(req.body)
+    console.log("zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz")
+
 
     let newProj = {
-          "id": randomNumber,
-          "title": "Dupe titled records (but diff ids)",
-          "description": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Corrupti ipsa error maxime alias id quisquam, quos commodi! Ex minus, molestias explicabo exercitationem ea voluptatum, itaque ipsum quos doloribus id quae?",
+          "id": req.body.id,
+          "title": req.body.title,
+          "description": req.body.description,
           "creator": "Mark Smith",
           "type": "static",
           "status": "in-progress",
@@ -58,9 +61,11 @@ export const addProjectAPI = (req, res, next) => {
 
     Project.create(newProj, (err, doc) => {
         if (err) {
-          console.log(err)
+            res.json({success: false, message: "POST Query failed"})
+            res.end()
         } else {
-          console.log("successful")
+            res.json({success: true, message: "POST Query succeeded"})
+            res.end()
         }
       });
 
@@ -70,11 +75,13 @@ export const addProjectAPI = (req, res, next) => {
 export const updateProjectAPI = (req, res, next) => {
     console.log("DEBUG UPDATE PROJECT")
 
-    Project.updateOne({id:80},{title: "Beef"}, (err, doc) => {
+    Project.updateOne({_id:req.params.id},{title: req.body.title,description: req.body.description}, (err, doc) => {
         if (err) {
-          console.log(err)
+            res.json({success: false, message: "PUT Query failed"})
+            res.end()
         } else {
-          console.log("successful")
+            res.json({success: true, message: "PUT Query succeeded"})
+            res.end()
         }
       });
 

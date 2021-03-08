@@ -1,5 +1,6 @@
 const express = require('express');
-const bodyParser = require('body-parser')
+//see app.use(express.json()); line below, following not needed
+//const bodyParser = require('body-parser')
 const path = require('path');
 const app = express();
 
@@ -12,6 +13,12 @@ connect("mongodb://localhost:27017/projectsdb")
 // app.use(cors())
 
 app.use(express.static(path.join(__dirname, 'build')));
+
+
+//see https://stackoverflow.com/questions/5710358/how-to-retrieve-post-query-parameters
+app.use(express.json());       // to support JSON-encoded bodies
+//also can probably get rid of body-parser above.
+//see: https://medium.com/@mmajdanski/express-body-parser-and-why-may-not-need-it-335803cd048c
 
 app.get('/ping', function (req, res) {
  return res.send('pong');

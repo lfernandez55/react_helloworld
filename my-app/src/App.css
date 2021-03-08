@@ -33,8 +33,21 @@ ul li{
 .proj-table{
   margin: 20px auto;
   border: 1px solid black;
+  width: 50%;
 }
  .proj-table td{
    border: 1px solid black;
    padding: 2em;
  }
+
+form{
+  width: 20%;
+  margin:auto;
+}
+
+ form div {
+  text-align: left;
+  display: flex;
+  justify-content: space-between;
+  margin: 10px 10px;
+}

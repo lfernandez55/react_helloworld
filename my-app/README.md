@@ -254,3 +254,8 @@ in list)
 24) Added other CRUD methods that update backend.  But they are crude:
 They don't update the front end.
 POST and PUT info isn't sent yet to server 
+
+25) Interlude (can be done earlier)
+a) Notice that when you go to localhost:8080 it's serving up old
+content.  This is because npm run build hasn't been executed in a while.  So rerun it.
+b) Look again at localhost:8080 and confirm its now up to date.

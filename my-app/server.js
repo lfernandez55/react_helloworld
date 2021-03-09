@@ -6,7 +6,7 @@ const app = express();
 
 //connect to the db
 import {connect} from './server/config/db/connect'
-connect("mongodb://localhost:27017/projectsdb")
+connect("mongodb://localhost:27017/projectsminidb")
 
 // to use the following two lines install cors
 // var cors = require('cors')

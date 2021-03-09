@@ -1,17 +1,27 @@
 import { useContext } from 'react'
 import { ProjectContext } from '../App'
-import { useParams } from 'react-router-dom'
+import { useParams, useHistory } from 'react-router-dom'
+
 
 export default function ProjectForm() {
-    
-    let { projects} = useContext(ProjectContext)
 
-    let {foo} = useParams()
-    console.log("foo", foo)
+    const history = useHistory()
+    
+    let { projects, setProjects} = useContext(ProjectContext)
+
     let {pid} = useParams()
-    console.log("pid", pid)
     let project = pid ? projects.find(p => p._id === pid) : {}
     
+    const handleIdChange = (event) => {
+        project.id = event.target.value
+    }
+    const handleTitleChange = (event) => {
+        project.title = event.target.value
+    }
+    const handleDescriptionChange = (event) => {
+        project.description = event.target.value
+    }
+
 
     const addProjForm = (e) => {
 
@@ -32,7 +42,6 @@ export default function ProjectForm() {
             url = "api/projects/"; 
             fetch_method = "POST";
         }
-        console.log("zzzzzzzzzzzz", url, fetch_method)
 
         fetch(url, {
             method: fetch_method,
@@ -45,8 +54,28 @@ export default function ProjectForm() {
             })
             .then((resp) => {
                 // the add was successful on the backend so update the context
-                alert('TODO: Proj was added successfully (still need code to update frontend GUI')
-                
+                if(resp.method === "POST"){
+                    console.log("new", resp._id, project)
+                    // create a new project and 
+                    project._id = resp._id;
+                    projects.push(project)
+                    setProjects([...projects])
+                } else {
+                    console.log("update", resp._id, project)
+                    // create a new proj array, only instead of the original project use the updated project
+                    // or in greater detail:
+                    // using map go thru each project in the original projects array
+                    // using the _id, if the project is one we want to update, replace it with the new one
+                    let newProjs = projects.map(e => {
+                        if (e.id == resp._id){
+                          e = project
+                        }
+                        return e;
+                    })
+                    // re-update the projects state 
+                    setProjects([...newProjs])
+                }
+                history.push('/list')
             })
             .catch((err) => {
                 // Code called when an error occurs during the request
@@ -60,13 +89,16 @@ export default function ProjectForm() {
             <h1>Project FORMx</h1>
             <form onSubmit={addProjForm}>
                 <div>
-                    <label>id:</label> <input type="text" name="id" defaultValue={project.id} />
+                    <label>id:</label> 
+                    <input type="text" name="id" defaultValue={project.id} onChange={handleIdChange} />
                 </div>
                 <div>
-                    <label>title:</label> <input type="text" name="title"  defaultValue={project.title} />
+                    <label>title:</label> 
+                    <input type="text" name="title"  defaultValue={project.title} onChange={handleTitleChange} />
                 </div>
                 <div>
-                    <label>description:</label> <input type="text" name="description" defaultValue={project.description} />
+                    <label>description:</label> 
+                    <input type="text" name="description" defaultValue={project.description} onChange={handleDescriptionChange} />
                 </div>
                 <div>
                     <input type="submit" />

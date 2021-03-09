@@ -259,3 +259,27 @@ POST and PUT info isn't sent yet to server
 a) Notice that when you go to localhost:8080 it's serving up old
 content.  This is because npm run build hasn't been executed in a while.  So rerun it.
 b) Look again at localhost:8080 and confirm its now up to date.
+
+26) Added form for updating and adding project
+a) added components/ProjectForm
+b) to link to new form from ProjectList used useHistory from ReactRouter
+c) in new componment used useParams to get id
+d) using id can either populate form or leave it blank
+d) based on whether id is present or not changed url of fetch
+e) fetch would not compose url correctly until <base href="/"> added
+to public/index.html
+f) had to change routing order in App.js for update form to display
+(originally only new project would display) 
+g) made adjustments server side so that controllers could get post
+and put data (had to add  app.use(express.json()); ).
+
+27) Updating backend also updates frontend
+a) Added onChange event to update project obj anytime form is changed
+b) Changed controllers in backend to return proj _id
+c) Using a and b updated state in fetch promise
+d) used history to go from form back to project list 
+e) created new db in mongo called "projectsminidb"
+e) Switched front end to projectsminidb.  this involved changes in
+model, and change in server.js to point to new db.  
+f) Note that there's no need to use mongo to create initial records.
+they can all be created client side.

@@ -273,7 +273,7 @@ f) had to change routing order in App.js for update form to display
 g) made adjustments server side so that controllers could get post
 and put data (had to add  app.use(express.json()); ).
 
-27) Updating backend also updates frontend
+27) Updating backend also updates frontend / new db
 a) Added onChange event to update project obj anytime form is changed
 b) Changed controllers in backend to return proj _id
 c) Using a and b updated state in fetch promise

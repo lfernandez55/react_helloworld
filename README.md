@@ -84,6 +84,14 @@ A lot of this build process is from: https://dev.to/loujaybee/using-create-react
     >npm start
     In browser go to localhost:3000
 
+    A note on how it works:
+        server.js 's static folder is static/build/index.html
+            which is built from public/index.html
+                which has <div id="root"></div>
+                    which is associated with src/index.j
+                        which has: ReactDOM.render( <React.StrictMode> <App /> </React.StrictMode>,document.getElementById('root'));
+                            which maps to src/App.js
+                            
 3) Create an environment variable
     a) Create an .env file inside of which is:
     REACT_APP_SERVER_URL=http://localhost:8080

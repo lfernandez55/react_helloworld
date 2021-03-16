@@ -1,3 +1,17 @@
+Desc:  Mongo, Express, React CRUD App
+A project bootstrapped with Create React App.  
+A separate react frontend running on 3000.  Code is in root/src and root/build
+A separate express backend  running on 8080.  Code is in root/server
+Basic CRUD methods against a Mongo DB
+
+GUI Desc: In header shows Mongo, Express, React CRUD App.  In nav, can click  on "Project List" which shows a list of projects. Can add a new project, delete a project and edit a project
+
+To spin up: Open up two terminals.  In right terminal type npm run server.  In left terminal type npm start.  Interact with localhost:3000 which is the react app.  In the background it will make CRUD api calls to the server running on 8080.  There's a proxy set in package.json the api calls get automatically sent to 8080.  
+
+DB: Mongo DB titled projectsminidb.  Contains only one Mongo table
+
+Origin:  The readme contains a full log of how to build it.  Created from scratch with npx create-react-app my-app, added express, 
+
 # react_helloworld
 
 # Getting Started with Create React App

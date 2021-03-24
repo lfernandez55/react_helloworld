@@ -35,28 +35,43 @@ export const delProjectAPI = (req, res, next) => {
 }
 
 export const addProjectAPI = (req, res, next) => {
-    console.log("DEBUG ADD PROJECT")
+    console.log("DEBUG ADD PROJECT" , req.body)
 
     let randomNumber = Math.floor(Math.random() * 1000);
 
+    let project = new Project(req.body)
 
-    let newProj = {
-          "id": req.body.id,
-          "title": req.body.title,
-          "description": req.body.description
-
-    }
-
-    Project.create(newProj, (err, doc) => {
+    project.save(err => {
         if (err) {
-            res.json({success: false, message: "POST Query failed"})
+            res.json({success: false, message: "Unable to save to DB"})
             res.end()
         } else {
-            console.log(doc)
-            res.json({success: true, message: "POST Query succeeded", method: "POST", _id: doc._id})
+            // res.status(200)
+            res.json({success: true, message: "POST Query succeeded", method: "POST", _id: project._id})
             res.end()
         }
       });
+
+
+    // ALTERNATE WAY:
+
+    // let newProj = {
+    //       "id": req.body.id,
+    //       "title": req.body.title,
+    //       "description": req.body.description
+
+    // }
+
+    // Project.create(newProj, (err, doc) => {
+    //     if (err) {
+    //         res.json({success: false, message: "POST Query failed"})
+    //         res.end()
+    //     } else {
+    //         console.log(doc)
+    //         res.json({success: true, message: "POST Query succeeded", method: "POST", _id: doc._id})
+    //         res.end()
+    //     }
+    //   });
 
 }
 

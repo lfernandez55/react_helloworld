@@ -13,7 +13,7 @@ function App() {
   let myArray = [{ "title": "Whale (these obj load when server is down) " }, { "title": "Fish" }]
 
   const [projects, setProjects] = useState(myArray);
-  const [DBFlag, setDBFlag] = useState("notChanged");
+  const [DBUpdated, setDBUpdated] = useState(false);
 
 
   useEffect(() => {
@@ -27,20 +27,20 @@ function App() {
         console.log('something is returned....');
         console.log(resp)
         setProjects(resp)
-        setDBFlag("notChanged")
+        setDBUpdated(false)
       })
       .catch((err) => {
         // Code called when an error occurs during the request
         console.log(err.message);
       });
-  }, [DBFlag])
+  }, [DBUpdated])
 
   useEffect(() => {
-    console.log("DBFLag value changed....")
-  }, [DBFlag])
+    console.log("DBUpdated value changed....")
+  }, [DBUpdated])
 
   return (
-    <ProjectContext.Provider value={{ projects, setProjects, DBFlag, setDBFlag }}>
+    <ProjectContext.Provider value={{ projects, setProjects, DBUpdated, setDBUpdated }}>
       <Router>
 
         <div className="App">

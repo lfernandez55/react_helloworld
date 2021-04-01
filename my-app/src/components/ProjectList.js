@@ -3,7 +3,7 @@ import { ProjectContext } from '../App.js';
 import { useHistory, Link } from 'react-router-dom'
 
 export default function ProjectList(props) {
-    let { setDBFlag } = useContext(ProjectContext)
+    let { setDBUpdated } = useContext(ProjectContext)
 
     const history = useHistory()
 
@@ -21,11 +21,11 @@ export default function ProjectList(props) {
                 /* Instead of running these two line:
                     let newProjArray = projects.filter(proj => proj._id !== param)
                     setProjects(newProjArray)
-                   I simply change the setDBFlag.  Over in App.js the useEffect is
+                   I simply change the setDBUpdated.  Over in App.js the useEffect is
                    watching for a change to this var.  If it changes, it re-queries the
                    db which also updates the state.
                 */
-                setDBFlag("changed")
+                setDBUpdated("changed")
             })
             .catch((err) => {
                 // Code called when an error occurs during the request

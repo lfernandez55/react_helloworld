@@ -7,7 +7,7 @@ export default function ProjectForm() {
 
     const history = useHistory()
     
-    let { projects, setDBFlag} = useContext(ProjectContext)
+    let { projects, setDBUpdated} = useContext(ProjectContext)
 
     let {pid} = useParams()
     let project = pid ? projects.find(p => p._id === pid) : {}
@@ -80,7 +80,7 @@ export default function ProjectForm() {
                     setProjects([...newProjs])
                 }
                 */
-                setDBFlag("changed!!!")
+                setDBUpdated(true)
                 history.push('/list')
             })
             .catch((err) => {

@@ -7,7 +7,7 @@ export default function ProjectForm() {
 
     const history = useHistory()
     
-    let { projects, setProjects} = useContext(ProjectContext)
+    let { projects, setDBFlag} = useContext(ProjectContext)
 
     let {pid} = useParams()
     let project = pid ? projects.find(p => p._id === pid) : {}
@@ -54,6 +54,10 @@ export default function ProjectForm() {
             })
             .then((resp) => {
                 // the add was successful on the backend so update the context
+                /*
+                The below updates to state aren't needed becuz when you redirect to 
+                ProjectList useEffect reloads the projects from the db and updates the state
+
                 if(resp.method === "POST"){
                     console.log("new", resp._id, project)
                     // create a new project and 
@@ -75,6 +79,8 @@ export default function ProjectForm() {
                     // re-update the projects state 
                     setProjects([...newProjs])
                 }
+                */
+                setDBFlag("changed!!!")
                 history.push('/list')
             })
             .catch((err) => {

@@ -13,6 +13,9 @@ function App() {
   let myArray = [{ "title": "Whale (these obj load when server is down) " }, { "title": "Fish" }]
 
   const [projects, setProjects] = useState(myArray);
+  const [DBFlag, setDBFlag] = useState("notChanged");
+
+
   useEffect(() => {
     fetch('api/projects', {
       method: "GET",
@@ -24,16 +27,20 @@ function App() {
         console.log('something is returned....');
         console.log(resp)
         setProjects(resp)
+        setDBFlag("notChanged")
       })
       .catch((err) => {
         // Code called when an error occurs during the request
         console.log(err.message);
       });
-  }, [])
+  }, [DBFlag])
 
+  useEffect(() => {
+    console.log("DBFLag value changed....")
+  }, [DBFlag])
 
   return (
-    <ProjectContext.Provider value={{ projects, setProjects }}>
+    <ProjectContext.Provider value={{ projects, setProjects, DBFlag, setDBFlag }}>
       <Router>
 
         <div className="App">
@@ -46,7 +53,7 @@ function App() {
               <li><Link to="/list"> Project List</Link></li>
               <li><Link to="/about">About</Link></li>
             </ul>
-            
+
             <ul>
               {/* <li>
               <button className="Sort-button" onClick={() => testAPI("Foo")}  >Test API</button>

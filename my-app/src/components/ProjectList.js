@@ -3,7 +3,7 @@ import { ProjectContext } from '../App.js';
 import { useHistory, Link } from 'react-router-dom'
 
 export default function ProjectList(props) {
-    let { projects, setProjects } = useContext(ProjectContext)
+    let { setDBFlag } = useContext(ProjectContext)
 
     const history = useHistory()
 
@@ -17,10 +17,15 @@ export default function ProjectList(props) {
             })
             .then((resp) => {
                 // the delete was successful on the backend so update the context
-                console.log(resp);
-                let newProjArray = projects.filter(proj => proj._id !== param)
-                setProjects(newProjArray)
-                
+
+                /* Instead of running these two line:
+                    let newProjArray = projects.filter(proj => proj._id !== param)
+                    setProjects(newProjArray)
+                   I simply change the setDBFlag.  Over in App.js the useEffect is
+                   watching for a change to this var.  If it changes, it re-queries the
+                   db which also updates the state.
+                */
+                setDBFlag("changed")
             })
             .catch((err) => {
                 // Code called when an error occurs during the request

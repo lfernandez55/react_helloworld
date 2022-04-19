@@ -1,11 +1,11 @@
 import { useContext } from 'react'
 import { ProjectContext } from '../App.js';
-import { useHistory, Link } from 'react-router-dom'
+import { useNavigate, Link } from 'react-router-dom'
 
 export default function ProjectList(props) {
     let { setDBUpdated } = useContext(ProjectContext)
 
-    const history = useHistory()
+    const navigate = useNavigate()
 
     const deleteMe = (param) => {
         let url = "api/projects/" + param;
@@ -32,7 +32,7 @@ export default function ProjectList(props) {
                 console.log(err.message);
             });
     }
-    
+
 
     return (
         <div>
@@ -50,16 +50,16 @@ export default function ProjectList(props) {
                 </thead>
                 <tbody>
                     {
-                        props.projs.map( (e,i) => {
+                        props.projs.map((e, i) => {
                             return (
                                 <tr key={i}>
                                     <td>{e.id}</td>
                                     <td>{e.title}</td>
                                     <td>{e.description}</td>
-                                    <td><button className="primary" onClick={() => history.push(`/project/${e._id}`)}>Edit</button>    </td>
-                                    <td> <button onClick={()=>{ deleteMe(e._id) }} >Delete</button>  </td>
+                                    <td><button className="primary" onClick={() => navigate(`/project/${e._id}`)}>Edit</button>    </td>
+                                    <td> <button onClick={() => { deleteMe(e._id) }} >Delete</button>  </td>
                                 </tr>
-        
+
                             )
                         })
                     }

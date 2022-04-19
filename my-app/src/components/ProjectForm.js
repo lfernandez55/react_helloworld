@@ -1,17 +1,17 @@
 import { useContext } from 'react'
 import { ProjectContext } from '../App'
-import { useParams, useHistory } from 'react-router-dom'
+import { useParams, useNavigate } from 'react-router-dom'
 
 
 export default function ProjectForm() {
 
-    const history = useHistory()
-    
-    let { projects, setDBUpdated} = useContext(ProjectContext)
+    const navigate = useNavigate()
 
-    let {pid} = useParams()
+    let { projects, setDBUpdated } = useContext(ProjectContext)
+
+    let { pid } = useParams()
     let project = pid ? projects.find(p => p._id === pid) : {}
-    
+
     const handleIdChange = (event) => {
         project.id = event.target.value
     }
@@ -33,20 +33,20 @@ export default function ProjectForm() {
         formObj.description = e.target.description.value;
         console.log(formObj)
 
-        let url = "" 
+        let url = ""
         let fetch_method = ""
-        if(pid){
+        if (pid) {
             url = "api/projects/" + pid;
             fetch_method = "PUT";
-        }else{
-            url = "api/projects/"; 
+        } else {
+            url = "api/projects/";
             fetch_method = "POST";
         }
 
         fetch(url, {
             method: fetch_method,
-            headers: {'Content-Type':'application/json', 'Access-Control-Allow-Origin': '*'},
-            body:  JSON.stringify(formObj),
+            headers: { 'Content-Type': 'application/json', 'Access-Control-Allow-Origin': '*' },
+            body: JSON.stringify(formObj),
             credentials: "include"
         })
             .then((response) => {
@@ -81,7 +81,7 @@ export default function ProjectForm() {
                 }
                 */
                 setDBUpdated(true)
-                history.push('/list')
+                navigate('/list')
             })
             .catch((err) => {
                 // Code called when an error occurs during the request
@@ -89,21 +89,21 @@ export default function ProjectForm() {
             });
 
     }
-    
+
     return (
         <div>
             <h1>Project FORMx</h1>
             <form onSubmit={addProjForm}>
                 <div>
-                    <label>id:</label> 
+                    <label>id:</label>
                     <input type="text" name="id" defaultValue={project.id} onChange={handleIdChange} />
                 </div>
                 <div>
-                    <label>title:</label> 
-                    <input type="text" name="title"  defaultValue={project.title} onChange={handleTitleChange} />
+                    <label>title:</label>
+                    <input type="text" name="title" defaultValue={project.title} onChange={handleTitleChange} />
                 </div>
                 <div>
-                    <label>description:</label> 
+                    <label>description:</label>
                     <input type="text" name="description" defaultValue={project.description} onChange={handleDescriptionChange} />
                 </div>
                 <div>

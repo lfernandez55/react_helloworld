@@ -2,7 +2,9 @@ import './App.css';
 import Main from './components/Main.js'
 import ProjectList from './components/ProjectList.js'
 import ProjectForm from './components/ProjectForm.js'
-import { BrowserRouter as Router, Link, Route, Switch } from 'react-router-dom'
+import Layout from './components/Layout.js'
+import About from './components/About.js'
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom'
 import { useState, createContext, useEffect } from 'react'
 
 export const ProjectContext = createContext()
@@ -44,50 +46,18 @@ function App() {
       <Router>
 
         <div className="App">
-         <header >
-           <h2>Mongo, Express, React CRUD App</h2>
-         </header>
-          <header className="App-header">
-            <ul>
-              <li><Link to="/">Home</Link></li>
-              <li><Link to="/list"> Project List</Link></li>
-              <li><Link to="/about">About</Link></li>
-            </ul>
 
-            <ul>
-              {/* <li>
-              <button className="Sort-button" onClick={() => testAPI("Foo")}  >Test API</button>
-            </li> */}
-              <li>
-                <Route path="/list">
-                  <button className="Sort-button"   >Sort List</button>
-                </Route>
-              </li>
-            </ul>
 
-          </header>
-          <Switch>
-            <Route path="/list">
-              <ProjectList projs={projects} />
+          <Routes>
+            <Route path="/" element={<Layout />}>
+              <Route path="/list" element={<ProjectList projs={projects} />}></Route>
+              <Route path="/project/:pid" element={<ProjectForm />}></Route>
+              <Route path="/project" element={<ProjectForm />}></Route>
+              <Route path="/about" element={<About />}></Route>
+              <Route exact path="/" element={<Main />}></Route>
             </Route>
+          </Routes>
 
-            <Route path="/project/:pid">
-              <ProjectForm />
-            </Route>
-            <Route path="/project">
-              <ProjectForm />
-            </Route>
-            <Route path="/about">
-              <h4>Build an about component here</h4>
-            </Route>
-            <Route exact path="/">
-              <Main />
-            </Route>
-          </Switch>
-          <footer className="App-footer">
-            <p>Copyright 2021</p>
-            <p>Environment Variable (set in root/.env): {process.env.REACT_APP_SERVER_URL}</p>
-          </footer>
         </div>
       </Router>
     </ProjectContext.Provider>

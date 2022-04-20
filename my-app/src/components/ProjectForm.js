@@ -11,22 +11,15 @@ export default function ProjectForm() {
 
     let { pid } = useParams()
     pid = parseInt(pid)
-    console.log("dork" + pid)
-    console.log(projects)
-    // let project = pid ? projects.find(p => p.id === pid) : {}
-    let maxId = projects[projects.length - 1].id + 1
-    let project = pid ? projects.find(p => p.id === pid) : { "id": maxId, "title": "", "description": "" }
 
-    // let project = {}
-    // if (pid) {
-    //     project = projects.find(p => {
-    //         if (p.id == pid) {
-    //             console.log("Passed test +")
-    //             return p;
-    //         }
-    //     })
-    // }
-    console.log(project)
+    let project;
+    if (pid) {
+        project = projects.find(p => p.id === pid)
+    } else {
+        let maxId = projects[projects.length - 1].id + 1
+        project = { "id": maxId, "title": "", "description": "" }
+    }
+
     const handleIdChange = (event) => {
         project.id = event.target.value
     }

@@ -12,7 +12,8 @@ export const ProjectContext = createContext()
 
 function App() {
 
-  let myArray = [{ "title": "Whale (these obj load when server is down) " }, { "title": "Fish" }]
+  let myArray = [{ "id": 1, "title": "Mini-Project", "description": "Build a birdhouse" },
+  { "id": 2, "title": "Medium-Project", "description": "Build a doghouse" }]
 
   const [projects, setProjects] = useState(myArray);
   const [DBUpdated, setDBUpdated] = useState(false);

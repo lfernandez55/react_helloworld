@@ -10,7 +10,10 @@ export default function ProjectForm() {
     let { projects, setDBUpdated } = useContext(ProjectContext)
 
     let { pid } = useParams()
-    let project = pid ? projects.find(p => p._id === pid) : {}
+    console.log('pid', pid)
+    console.log('projects', projects)
+    let project = pid ? { ...projects.find(p => p._id === pid) } : {}
+    console.log('project', project)
 
     const handleIdChange = (event) => {
         project.id = event.target.value
@@ -23,7 +26,7 @@ export default function ProjectForm() {
     }
 
 
-    const addProjForm = (e) => {
+    const addUpdateProjForm = (e) => {
 
         e.preventDefault();
         console.log(e.target.id.value)
@@ -92,8 +95,8 @@ export default function ProjectForm() {
 
     return (
         <div>
-            <h1>Project FORMx</h1>
-            <form onSubmit={addProjForm}>
+            <h1>Project FORM</h1>
+            <form onSubmit={addUpdateProjForm}>
                 <div>
                     <label>id:</label>
                     <input type="text" name="id" defaultValue={project.id} onChange={handleIdChange} />

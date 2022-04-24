@@ -31,7 +31,7 @@ export default function ProjectForm() {
     }
 
 
-    const addProjForm = (e) => {
+    const addUpdateProjForm = (e) => {
         e.preventDefault();
         let newProjs;
         if (pid) {
@@ -55,7 +55,7 @@ export default function ProjectForm() {
     return (
         <div>
             <h1>Project FORM</h1>
-            <form onSubmit={addProjForm}>
+            <form onSubmit={addUpdateProjForm}>
                 <div>
                     <label>id:</label>
                     <input type="text" name="id" defaultValue={project.id} onChange={handleIdChange} disabled />

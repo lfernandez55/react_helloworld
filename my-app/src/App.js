@@ -1,8 +1,8 @@
 import './App.css';
 import Main from './components/Main.js'
+import Layout from './components/Layout.js'
 import ProjectList from './components/ProjectList.js'
 import ProjectForm from './components/ProjectForm.js'
-import Layout from './components/Layout.js'
 import About from './components/About.js'
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom'
 import { useState, createContext } from 'react'
@@ -12,35 +12,10 @@ export const ProjectContext = createContext()
 
 function App() {
 
-  let myArray = [{ "id": 1, "title": "Whale (these obj load when server is down) ", "description": "Moby" },
-  { "id": 2, "title": "Elephant", "description": "Babar" }]
+  let myArray = [{ "id": 1, "title": "Mini-Project", "description": "Build a birdhouse" },
+  { "id": 2, "title": "Medium-Project", "description": "Build a doghouse" }]
 
   const [projects, setProjects] = useState(myArray);
-  // const [DBUpdated, setDBUpdated] = useState(false);
-
-
-  // useEffect(() => {
-  //   fetch('api/projects', {
-  //     method: "GET",
-  //   })
-  //     .then((response) => {
-  //       return response.json();
-  //     })
-  //     .then((resp) => {
-  //       console.log('something is returned....');
-  //       console.log(resp)
-  //       setProjects(resp)
-  //       setDBUpdated(false)
-  //     })
-  //     .catch((err) => {
-  //       // Code called when an error occurs during the request
-  //       console.log(err.message);
-  //     });
-  // }, [DBUpdated])
-
-  // useEffect(() => {
-  //   console.log("DBUpdated value changed....")
-  // }, [DBUpdated])
 
   return (
     <ProjectContext.Provider value={{ projects, setProjects }}>

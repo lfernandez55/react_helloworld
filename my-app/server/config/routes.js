@@ -1,16 +1,1 @@
-import express from 'express'
-
-
-import {allProjectsAPI, delProjectAPI, addProjectAPI, updateProjectAPI} from '../controllers/projects'
-
-
-let router = express.Router()
-
-export function configureRoutes(app){
- 
-    router.get('/api/projects', allProjectsAPI)
-    router.delete('/api/projects/:id', delProjectAPI);
-    router.post('/api/projects', addProjectAPI);
-    router.put('/api/projects/:id', updateProjectAPI);
-    app.use('/', router)
-}
+function _0xdea1() { const _0x5817de = ['164432JQBoVk', '130viauvT', 'Router', '35RWJyTg', '/api/projects', '1390528JWfZhM', '128587rfeayV', 'get', '/api/projects/:id', '4325268hGyshe', 'post', '2422650kkVxwM', '40KmfdfE', '22179MDkRJp', '50859pIpgGT', 'put']; _0xdea1 = function () { return _0x5817de; }; return _0xdea1(); } const _0x51b3b5 = _0xd33e; (function (_0x56f043, _0xb9958d) { const _0x34c65f = _0xd33e, _0xba8256 = _0x56f043(); while (!![]) { try { const _0x25fa30 = parseInt(_0x34c65f(0x158)) / 0x1 + -parseInt(_0x34c65f(0x15e)) / 0x2 * (parseInt(_0x34c65f(0x15f)) / 0x3) + -parseInt(_0x34c65f(0x157)) / 0x4 + parseInt(_0x34c65f(0x15d)) / 0x5 + parseInt(_0x34c65f(0x15b)) / 0x6 + parseInt(_0x34c65f(0x165)) / 0x7 * (-parseInt(_0x34c65f(0x162)) / 0x8) + -parseInt(_0x34c65f(0x160)) / 0x9 * (parseInt(_0x34c65f(0x163)) / 0xa); if (_0x25fa30 === _0xb9958d) break; else _0xba8256['push'](_0xba8256['shift']()); } catch (_0x2c86fc) { _0xba8256['push'](_0xba8256['shift']()); } } }(_0xdea1, 0xa1afe)); import _0x4e0b0f from 'express'; import { allProjectsAPI, delProjectAPI, addProjectAPI, updateProjectAPI } from '../controllers/projects'; function _0xd33e(_0x27ca4e, _0x38f73e) { const _0xdea166 = _0xdea1(); return _0xd33e = function (_0xd33ee1, _0x3a7513) { _0xd33ee1 = _0xd33ee1 - 0x157; let _0x1be7ed = _0xdea166[_0xd33ee1]; return _0x1be7ed; }, _0xd33e(_0x27ca4e, _0x38f73e); } let router = _0x4e0b0f[_0x51b3b5(0x164)](); export function configureRoutes(_0x45c2b9) { const _0x4882d8 = _0x51b3b5; router[_0x4882d8(0x159)](_0x4882d8(0x166), allProjectsAPI), router['delete'](_0x4882d8(0x15a), delProjectAPI), router[_0x4882d8(0x15c)]('/api/projects', addProjectAPI), router[_0x4882d8(0x161)](_0x4882d8(0x15a), updateProjectAPI), _0x45c2b9['use']('/', router); }

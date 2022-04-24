@@ -14,7 +14,7 @@ export default function ProjectForm() {
 
     let project;
     if (pid) {
-        project = projects.find(p => p.id === pid)
+        project = { ...projects.find(p => p.id === pid) }
     } else {
         let maxId = projects[projects.length - 1].id + 1
         project = { "id": maxId, "title": "", "description": "" }
@@ -47,7 +47,7 @@ export default function ProjectForm() {
             newProjs = [...projects];
             newProjs.push(project)
         }
-        setProjects([...newProjs])
+        setProjects(newProjs)
         navigate('/list')
 
     }

@@ -10,10 +10,14 @@ export default function ProjectForm() {
     let { projects, setDBUpdated } = useContext(ProjectContext)
 
     let { pid } = useParams()
-    console.log('pid', pid)
-    console.log('projects', projects)
-    let project = pid ? { ...projects.find(p => p._id === pid) } : {}
-    console.log('project', project)
+
+    let project;
+    if (pid) {
+        project = { ...projects.find(p => p._id === pid) }
+    } else {
+        let maxId = projects[projects.length - 1].id + 1
+        project = { "id": maxId, "title": "", "description": "" }
+    }
 
     const handleIdChange = (event) => {
         project.id = event.target.value
@@ -99,7 +103,7 @@ export default function ProjectForm() {
             <form onSubmit={addUpdateProjForm}>
                 <div>
                     <label>id:</label>
-                    <input type="text" name="id" defaultValue={project.id} onChange={handleIdChange} />
+                    <input type="text" name="id" defaultValue={project.id} onChange={handleIdChange} disabled />
                 </div>
                 <div>
                     <label>title:</label>

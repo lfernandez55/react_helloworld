@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>API Callsyyy</title>
+</head>
+<script>
+    function apiGET() {
+        fetch('api/projects', {
+            method: "GET",
+        })
+            .then((response) => {
+                return response.json();
+            })
+            .then((resp) => {
+                console.log('something is returned....');
+                console.log(resp)
+
+            })
+            .catch((err) => {
+                // Code called when an error occurs during the request
+                console.log(err.message);
+            });
+    }
+    function apiPOST() {
+        let formObj = {}
+        formObj.title = "A Foo Project"
+        formObj.description = "Very Foo Foo"
+        fetch("api/projects", {
+            method: "POST",
+            headers: { 'Content-Type': 'application/json', 'Access-Control-Allow-Origin': '*' },
+            body: JSON.stringify(formObj),
+            credentials: "include"
+        })
+            .then((response) => {
+                return response.json();
+            })
+            .then((resp) => {
+                console.log("Successful")
+                console.log(resp)
+                document.getElementById('pid').value = resp._id
+            })
+            .catch((err) => {
+                // Code called when an error occurs during the request
+                console.log(err.message);
+            });
+    }
+
+    function apiPUT() {
+        let formObj = {}
+        formObj.title = "A Baz Project"
+        formObj.description = "Very Baz Baz"
+        let url = "api/projects/" + document.getElementById('pid').value
+        fetch(url, {
+            method: "PUT",
+            headers: { 'Content-Type': 'application/json', 'Access-Control-Allow-Origin': '*' },
+            body: JSON.stringify(formObj),
+            credentials: "include"
+        })
+            .then((response) => {
+                return response.json();
+            })
+            .then((resp) => {
+                console.log("Successful")
+                console.log(resp)
+                document.getElementById('pid').value = resp._id
+            })
+            .catch((err) => {
+                // Code called when an error occurs during the request
+                console.log(err.message);
+            });
+    }
+
+
+    function apiDelete() {
+        let url = 'api/projects/' + document.getElementById('pid').value
+        fetch(url, {
+            method: "DELETE",
+        })
+            .then((response) => {
+                return response.json();
+            })
+            .then((resp) => {
+                console.log('something is returned....');
+                console.log(resp)
+            })
+            .catch((err) => {
+                // Code called when an error occurs during the request
+                console.log(err.message);
+            });
+    }
+
+
+</script>
+
+<body>
+    <h1>API Calls</h1>
+    <ul>
+        <li><a href="#" onclick="apiGET()">api/projects GET</a></li>
+        <li><a href="#" onclick="apiPOST()">api/projects POST</a></li>
+        <li><a href="#" onclick="apiPUT()">api/projects PUT</a></li>
+        <li><a href="#" onclick="apiDelete()">api/projects/:id DELETE</a> </li>
+
+
+    </ul>
+    Project ID being used in PUT or DELETE (You can edit this):<br>
+    <input type="text" id="pid"><br>
+    </pre>
+</body>
+
+</html>

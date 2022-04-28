@@ -5,7 +5,7 @@ import ProjectList from './components/ProjectList.js'
 import ProjectForm from './components/ProjectForm.js'
 import About from './components/About.js'
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom'
-import { useState, createContext } from 'react'
+import { useState, createContext, useEffect } from 'react'
 
 export const ProjectContext = createContext()
 
@@ -14,11 +14,35 @@ function App() {
 
   let myArray = [{ "id": 1, "title": "Mini-Project", "description": "Build a birdhouse" },
   { "id": 2, "title": "Medium-Project", "description": "Build a doghouse" }]
-
   const [projects, setProjects] = useState(myArray);
+  const [DBUpdated, setDBUpdated] = useState(false);
+
+  useEffect(() => {
+    fetch('api/projects', {
+      method: "GET",
+    })
+      .then((response) => {
+        return response.json();
+      })
+      .then((resp) => {
+        console.log('something is returned....');
+        console.log(resp)
+        setProjects(resp)
+        setDBUpdated(false)
+      })
+      .catch((err) => {
+        // Code called when an error occurs during the request
+        console.log(err.message);
+      });
+  }, [DBUpdated])
+
+  // useEffect(() => {
+  //   console.log('debug')
+  // });
+
 
   return (
-    <ProjectContext.Provider value={{ projects, setProjects }}>
+    <ProjectContext.Provider value={{ projects, setProjects, DBUpdated, setDBUpdated }}>
       <Router>
 
         <div className="App">

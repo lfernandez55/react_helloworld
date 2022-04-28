@@ -7,7 +7,7 @@ export default function ProjectForm() {
 
     const navigate = useNavigate()
 
-    let { projects, setProjects } = useContext(ProjectContext)
+    let { projects, setDBUpdated } = useContext(ProjectContext)
 
     let { pid } = useParams()
     pid = parseInt(pid)
@@ -20,9 +20,7 @@ export default function ProjectForm() {
         project = { "id": maxId, "title": "", "description": "" }
     }
 
-    const handleIdChange = (event) => {
-        project.id = event.target.value
-    }
+
     const handleTitleChange = (event) => {
         project.title = event.target.value
     }
@@ -32,23 +30,37 @@ export default function ProjectForm() {
 
 
     const addUpdateProjForm = (e) => {
+
         e.preventDefault();
-        let newProjs;
+
+        let url = ""
+        let fetch_method = ""
         if (pid) {
-            //update
-            newProjs = projects.map(e => {
-                if (e.id === pid) {
-                    e = project
-                }
-                return e;
-            })
+            url = "api/projects/" + pid;
+            fetch_method = "PUT";
         } else {
-            //add
-            newProjs = [...projects];
-            newProjs.push(project)
+            url = "api/projects/";
+            fetch_method = "POST";
         }
-        setProjects(newProjs)
-        navigate('/list')
+
+        fetch(url, {
+            method: fetch_method,
+            headers: { 'Content-Type': 'application/json', 'Access-Control-Allow-Origin': '*' },
+            body: JSON.stringify(project),
+            credentials: "include"
+        })
+            .then((response) => {
+                return response.json();
+            })
+            .then((resp) => {
+                // the add was successful on the backend so update the context
+                setDBUpdated(true)
+                navigate('/list')
+            })
+            .catch((err) => {
+                // Code called when an error occurs during the request
+                console.log(err.message);
+            });
 
     }
 
@@ -58,7 +70,7 @@ export default function ProjectForm() {
             <form onSubmit={addUpdateProjForm}>
                 <div>
                     <label>id:</label>
-                    <input type="text" name="id" defaultValue={project.id} onChange={handleIdChange} disabled />
+                    <input type="text" name="id" defaultValue={project.id} disabled />
                 </div>
                 <div>
                     <label>title:</label>

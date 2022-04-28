@@ -10,18 +10,17 @@ export default function ProjectForm() {
     let { projects, setDBUpdated } = useContext(ProjectContext)
 
     let { pid } = useParams()
+    pid = parseInt(pid)
 
     let project;
     if (pid) {
-        project = { ...projects.find(p => p._id === pid) }
+        project = { ...projects.find(p => p.id === pid) }
     } else {
         let maxId = projects[projects.length - 1].id + 1
         project = { "id": maxId, "title": "", "description": "" }
     }
 
-    const handleIdChange = (event) => {
-        project.id = event.target.value
-    }
+
     const handleTitleChange = (event) => {
         project.title = event.target.value
     }
@@ -33,12 +32,6 @@ export default function ProjectForm() {
     const addUpdateProjForm = (e) => {
 
         e.preventDefault();
-        console.log(e.target.id.value)
-        let formObj = {};
-        formObj.id = e.target.id.value;
-        formObj.title = e.target.title.value;
-        formObj.description = e.target.description.value;
-        console.log(formObj)
 
         let url = ""
         let fetch_method = ""
@@ -53,40 +46,13 @@ export default function ProjectForm() {
         fetch(url, {
             method: fetch_method,
             headers: { 'Content-Type': 'application/json', 'Access-Control-Allow-Origin': '*' },
-            body: JSON.stringify(formObj),
+            body: JSON.stringify(project),
             credentials: "include"
         })
             .then((response) => {
                 return response.json();
             })
             .then((resp) => {
-                // the add was successful on the backend so update the context
-                /*
-                The below updates to state aren't needed becuz when you redirect to 
-                ProjectList useEffect reloads the projects from the db and updates the state
-
-                if(resp.method === "POST"){
-                    console.log("new", resp._id, project)
-                    // create a new project and 
-                    project._id = resp._id;
-                    projects.push(project)
-                    setProjects([...projects])
-                } else {
-                    console.log("update", resp._id, project)
-                    // create a new proj array, only instead of the original project use the updated project
-                    // or in greater detail:
-                    // using map go thru each project in the original projects array
-                    // using the _id, if the project is one we want to update, replace it with the new one
-                    let newProjs = projects.map(e => {
-                        if (e.id == resp._id){
-                          e = project
-                        }
-                        return e;
-                    })
-                    // re-update the projects state 
-                    setProjects([...newProjs])
-                }
-                */
                 setDBUpdated(true)
                 navigate('/list')
             })
@@ -103,7 +69,7 @@ export default function ProjectForm() {
             <form onSubmit={addUpdateProjForm}>
                 <div>
                     <label>id:</label>
-                    <input type="text" name="id" defaultValue={project.id} onChange={handleIdChange} disabled />
+                    <input type="text" name="id" defaultValue={project.id} disabled />
                 </div>
                 <div>
                     <label>title:</label>

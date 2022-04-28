@@ -56,7 +56,7 @@ export default function ProjectList(props) {
                                     <td>{e.id}</td>
                                     <td>{e.title}</td>
                                     <td>{e.description}</td>
-                                    <td><button className="primary" onClick={() => navigate(`/project/${e._id}`)}>Edit</button>    </td>
+                                    <td><button className="primary" onClick={() => navigate(`/project/${e.id}`)}>Edit</button>    </td>
                                     <td> <button onClick={() => { deleteMe(e._id) }} >Delete</button>  </td>
                                 </tr>
 

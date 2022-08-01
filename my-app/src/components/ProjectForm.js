@@ -36,7 +36,7 @@ export default function ProjectForm() {
         let url = ""
         let fetch_method = ""
         if (pid) {
-            url = "api/projects/" + pid;
+            url = "api/projects/" + project._id;
             fetch_method = "PUT";
         } else {
             url = "api/projects/";

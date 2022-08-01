@@ -45,7 +45,7 @@ form{
   margin:auto;
 }
 
- form div {
+form div {
   text-align: left;
   display: flex;
   justify-content: space-between;

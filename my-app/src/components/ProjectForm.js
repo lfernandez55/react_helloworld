@@ -16,7 +16,10 @@ export default function ProjectForm() {
     if (pid) {
         project = { ...projects.find(p => p.id === pid) }
     } else {
-        let maxId = projects[projects.length - 1].id + 1
+        let maxId = 1
+        if (projects.length > 0){
+            maxId = projects[projects.length - 1].id + 1
+        } 
         project = { "id": maxId, "title": "", "description": "" }
     }
 

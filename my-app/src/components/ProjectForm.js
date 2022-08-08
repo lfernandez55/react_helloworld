@@ -10,11 +10,11 @@ export default function ProjectForm() {
     let { projects, setDBUpdated } = useContext(ProjectContext)
 
     let { pid } = useParams()
-    pid = parseInt(pid)
+    // pid = parseInt(pid)
 
     let project;
     if (pid) {
-        project = { ...projects.find(p => p.id === pid) }
+        project = { ...projects.find(p => p._id === pid) }
     } else {
         let maxId = 1
         if (projects.length > 0){

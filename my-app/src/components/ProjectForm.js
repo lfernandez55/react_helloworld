@@ -55,7 +55,7 @@ export default function ProjectForm() {
             .then((response) => {
                 return response.json();
             })
-            .then((resp) => {
+            .then(response) => {
                 // the add was successful on the backend so update the context
                 setDBUpdated(true)
                 navigate('/list')
